@@ -15,7 +15,7 @@ variable "AWS_S3_BACKEND_BUCKET_KEY" {}
 
 variable "authorized_keys" {}
 variable "root_password" {}
-variable "public_key_location" {}
+variable "public_key_path" {}
 
 variable "web_node_count" {}
 variable "web_instance_type" {}
