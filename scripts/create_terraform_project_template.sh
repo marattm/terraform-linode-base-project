@@ -45,7 +45,7 @@ done
 create_project_structure() {
     mkdir -p "${PROJECT_NAME_PATH}"/{development,staging,production,modules}
     mkdir -p "${PROJECT_NAME_PATH}"/modules/{web,db,lb}
-    touch "${PROJECT_NAME_PATH}"/{development,staging,production}/{main.tf,variables.tf,outputs.tf,providers.tf,backends.tf,,terraform.tfvars,secrets.tfvars}
+    touch "${PROJECT_NAME_PATH}"/{development,staging,production}/{main.tf,variables.tf,outputs.tf,providers.tf,backends.tf,terraform.tfvars,secrets.tfvars}
     touch "${PROJECT_NAME_PATH}"/modules/{web,db,lb}/{main.tf,variables.tf,outputs.tf,providers.tf,backends.tf,terraform.tfvars,secrets.tfvars}
 }
 
