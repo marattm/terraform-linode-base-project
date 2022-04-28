@@ -1,7 +1,7 @@
 # module invocations
 module "nodebalancer" {
   # source                  = "./modules/nodebalancer"
-  source                  = "git@github.com:marattm/terraform-module-linode-nodebalancer.git"
+  source                  = "git@github.com:marattm/terraform-linode-module-nodebalancer.git"
   region                  = var.LN_REGION
   node_count              = var.node_count
   web_servers_private_ips = module.webserver.web_servers_private_ips
@@ -9,7 +9,7 @@ module "nodebalancer" {
 
 module "webserver" {
   # source              = "./modules/webserver"
-  source              = "git@github.com:marattm/terraform-module-linode-webserver.git"
+  source              = "git@github.com:marattm/terraform-linode-module-webserver.git"
   public_key_location = var.public_key_location
   root_password       = var.root_password
   region              = var.LN_REGION
@@ -19,7 +19,7 @@ module "webserver" {
 
 module "dbserver" {
   # source              = "./modules/dbserver"
-  source              = "git@github.com:marattm/terraform-module-linode-dbserver.git"
+  source              = "git@github.com:marattm/terraform-linode-module-dbserver.git"
   public_key_location = var.public_key_location
   root_password       = var.root_password
   region              = var.LN_REGION
@@ -29,7 +29,7 @@ module "dbserver" {
 
 module "network" {
   # source                  = "./modules/network"
-  source                  = "git@github.com:marattm/terraform-module-linode-network.git"
+  source                  = "git@github.com:marattm/terraform-linode-module-network.git"
   linode_ids              = module.webserver.web_linode_ids
   db_linode_ids           = module.dbserver.db_linode_ids
   web_servers_private_ips = module.webserver.web_servers_private_ips
