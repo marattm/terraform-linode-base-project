@@ -21,3 +21,8 @@ variable "web_node_count" {}
 variable "web_instance_type" {}
 variable "db_node_count" {}
 variable "db_instance_type" {}
+
+# variable "module_source_nodebalancer" {}
+# variable "module_source_webserver" {}
+# variable "module_source_dbserver" {}
+# variable "module_source_network" {}

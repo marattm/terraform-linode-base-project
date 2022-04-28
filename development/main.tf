@@ -9,22 +9,22 @@ module "nodebalancer" {
 
 module "webserver" {
   # source              = "./modules/webserver"
-  source              = "git@github.com:marattm/terraform-linode-module-webserver.git"
-  public_key_location = var.public_key_location
-  root_password       = var.root_password
-  region              = var.LN_REGION
-  node_count          = var.web_node_count
-  instance_type       = var.web_instance_type
+  source          = "git@github.com:marattm/terraform-linode-module-webserver.git"
+  public_key_path = var.public_key_path
+  root_password   = var.root_password
+  region          = var.LN_REGION
+  node_count      = var.web_node_count
+  instance_type   = var.web_instance_type
 }
 
 module "dbserver" {
   # source              = "./modules/dbserver"
-  source              = "git@github.com:marattm/terraform-linode-module-dbserver.git"
-  public_key_location = var.public_key_location
-  root_password       = var.root_password
-  region              = var.LN_REGION
-  db_node_count       = var.db_node_count
-  db_instance_type    = var.db_instance_type
+  source           = "git@github.com:marattm/terraform-linode-module-dbserver.git"
+  public_key_path  = var.public_key_path
+  root_password    = var.root_password
+  region           = var.LN_REGION
+  db_node_count    = var.db_node_count
+  db_instance_type = var.db_instance_type
 }
 
 module "network" {
