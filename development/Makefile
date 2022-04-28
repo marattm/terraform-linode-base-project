@@ -29,28 +29,28 @@ tfvars=secrets.tfvars
 
 terraform-plan: terraform-fmt terraform-validate
 	mkdir -p terraform-plan-output
-	terraform plan -var-file=${tfvars} -out terraform-plan-output/terraform-plan-${DATE}
+	terraform plan -var-file=${tfvars} -var-file=terraform.tfvars -out terraform-plan-output/terraform-plan-${DATE}
 
 terraform-apply:
 	terraform apply -var-file=${tfvars}
 
 terraform-refresh:
-	terraform apply -refresh-only -var-file=${tfvars}
+	terraform apply -refresh-only -var-file=${tfvars} -var-file=terraform.tfvars
 
 container_name="YetAnotherName"
 terraform-apply-with-var:
-	terraform apply -var "container_name=${container_name}"  -var-file=${tfvars}
+	terraform apply -var "container_name=${container_name}"  -var-file=${tfvars} -var-file=terraform.tfvars
 terraform-show:
-	terraform show -var-file=${tfvars}
+	terraform show -var-file=${tfvars} -var-file=terraform.tfvars
 
 terraform-state-list:
-	terraform state list -var-file=${tfvars}
+	terraform state list -var-file=${tfvars} -var-file=terraform.tfvars
 
 terraform-output:
-	terraform output -var-file=${tfvars}
+	terraform output -var-file=${tfvars} -var-file=terraform.tfvars
 
 terraform-destroy:
-	terraform destroy -var-file=${tfvars}
+	terraform destroy -var-file=${tfvars} -var-file=terraform.tfvars
 
 
 # LINODE
