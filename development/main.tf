@@ -24,12 +24,17 @@ module "webserver" {
 
 module "dbserver" {
   # source = "../modules/terraform-linode-module-dbserver"
-  source           = "git@github.com:marattm/terraform-linode-module-dbserver.git"
-  public_key_path  = var.public_key_path
-  root_password    = var.root_password
-  region           = var.LN_REGION
-  db_node_count    = var.db_node_count
-  db_instance_type = var.db_instance_type
+  source          = "git@github.com:marattm/terraform-linode-module-dbserver.git"
+  public_key_path = var.public_key_path
+  root_password   = var.root_password
+  region          = var.LN_REGION
+  label           = var.linode_db_instance_label
+  group           = var.linode_db_instance_group
+  image           = var.linode_db_instance_image
+  instance_type   = var.linode_db_instance_type
+  node_count      = var.linode_db_instance_node_count
+  swap_size       = var.linode_db_instance_swap_size
+  tags            = var.linode_db_instance_tags
 }
 
 module "network" {
