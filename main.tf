@@ -3,7 +3,7 @@ module "nodebalancer" {
   # source                  = "./modules/nodebalancer"
   source                  = "git@github.com:marattm/terraform-linode-module-nodebalancer.git"
   region                  = var.LN_REGION
-  node_count              = var.node_count
+  node_count              = var.web_node_count
   web_servers_private_ips = module.webserver.web_servers_private_ips
 }
 
@@ -13,8 +13,8 @@ module "webserver" {
   public_key_location = var.public_key_location
   root_password       = var.root_password
   region              = var.LN_REGION
-  node_count          = var.node_count
-  instance_type       = var.instance_type
+  node_count          = var.web_node_count
+  instance_type       = var.web_instance_type
 }
 
 module "dbserver" {
