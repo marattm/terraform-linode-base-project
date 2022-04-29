@@ -42,9 +42,9 @@ terraform-linode-infra
 
 - Initialize terraform dependencies and backend: `make dev-init`
 
-- Plan and apply changes: `make dev-plan` and apply changes
+- Plan and apply changes: `make dev-plan`, and apply changes
 
-- List of the main `make` commands per env in the `Makefile`:
+- List of the main `make` commands per env in the [Makefile](Makefile):
 
 | *Cmd/Env*             | **sandbox**          | **dev**          | **staging**          | **prod**          |
 | --------------------- | -------------------- | ---------------- | -------------------- | ----------------- |
@@ -70,7 +70,7 @@ terraform-linode-infra
     │   ├── terraform-linode-module-nodebalancer -> ../terraform-linode-module-nodebalancer
     │   └── terraform-linode-module-webserver -> ../terraform-linode-module-webserver
     ├── scripts
-    └── tf-envs                         # all the differente envs
+    └── tf-envs
         ├── dev                         
             ├── backends.tfvars
             └── secrets.tfvars
@@ -85,11 +85,9 @@ terraform-linode-infra
             └── secrets.tfvars
     ```
 
-    NB:
-      - The `module` dir is only to help for the development part of those modules.
-      - The `tf-envs` dir contains the secrets variables separated by env. Those are not versioned.
+    NB: The `modules` dir is only to help for the development part of those modules. The `tf-envs` dir contains the secrets variables separated by env. Those are not versioned.
 
-- Then update the `dev/maint.tf` modules sources:
+- Then update the `maint.tf` modules sources:
 
     ```hcl
     module "webserver" {
@@ -116,8 +114,8 @@ terraform-linode-infra
 
 - Initialize terraform dependencies
 
-  - to use a ***remote*** backend ***(preferred for prod / staging / dev env)*** run this: `terraform init -backend-config=backends.example.tfvars`
-  - to use a ***local*** backend ***(preferred for sandbox env)*** run this: `make terraform-init`
+  - to use a ***remote*** backend ***(preferred for prod / staging / dev env)*** run this: `make <ENV>-init`
+  - to use a ***local*** backend ***(preferred for sandbox env)*** run this: `make terraform-init`, *or if you use another safe remote backends for sandbox `make sandbox-init`*.
 
 - `make terraform-plan` and apply changes
 
