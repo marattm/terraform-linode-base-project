@@ -13,6 +13,11 @@
   - [x] update the variables for the network module, and clean it up (at least for the label and the tags)
   - [x] remove the user_data / remote exec scripts from dev/staging/prod | or let it in another branch for demo / example folder..
 
+- MODULE
+  - [ ] add the LN LB SSL cert and SSL key for the nodebalancer
+  - [ ] server backup configuration
+  - [ ] dns
+
 - README
   - [ ] use versioning for your modules
   - [ ] define the branching policy if any needed
@@ -30,8 +35,3 @@
   - [ ] find a way to manage the 3 dev / staqing / prod env when developing one env without drifting..
   - [ ] the idea of making this whole project like a module???
   - [ ] all other modules linode can offer and see if some are relevant to integrate
-
-- MODULE
-  - [ ] add the LN LB SSL cert and SSL key for the nodebalancer
-  - [ ] server backup configuration
-  - [ ] dns
