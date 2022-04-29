@@ -1,7 +1,7 @@
 # non-sensitives auto vars - default for all dev env
 
 ENV    = "staging"
-DOMAIN = "live.imagescape.com"
+DOMAIN = "staging.imagescape.com"
 
 linode_web_instance_group = "webserver"
 linode_web_instance_image = "linode/ubuntu20.04"
