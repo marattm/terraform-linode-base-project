@@ -13,13 +13,16 @@ module "webserver" {
   public_key_path = var.public_key_path
   root_password   = var.root_password
   region          = var.LN_REGION
-  label           = var.linode_web_instance_label
   group           = var.linode_web_instance_group
   image           = var.linode_web_instance_image
   instance_type   = var.linode_web_instance_type
   node_count      = var.linode_web_instance_node_count
-  swap_size       = var.linode_web_instance_swap_size
   tags            = var.linode_web_instance_tags
+  # label           = var.label
+  # swap_size       = var.linode_web_instance_swap_size
+  SITE   = var.SITE
+  ID     = var.ID
+  DOMAIN = var.DOMAIN
 }
 
 module "dbserver" {
@@ -28,13 +31,16 @@ module "dbserver" {
   public_key_path = var.public_key_path
   root_password   = var.root_password
   region          = var.LN_REGION
-  label           = var.linode_db_instance_label
-  group           = var.linode_db_instance_group
-  image           = var.linode_db_instance_image
-  instance_type   = var.linode_db_instance_type
-  node_count      = var.linode_db_instance_node_count
-  swap_size       = var.linode_db_instance_swap_size
-  tags            = var.linode_db_instance_tags
+  # label           = "${var.SITE}-db${var.ID}.${var.DOMAIN}"
+  group         = var.linode_db_instance_group
+  image         = var.linode_db_instance_image
+  instance_type = var.linode_db_instance_type
+  node_count    = var.linode_db_instance_node_count
+  tags          = var.linode_db_instance_tags
+  # swap_size       = var.linode_db_instance_swap_size
+  SITE   = var.SITE
+  ID     = var.ID
+  DOMAIN = var.DOMAIN
 }
 
 module "network" {

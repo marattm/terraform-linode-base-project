@@ -34,6 +34,25 @@ variable "root_password" {}
 variable "public_key_path" {}
 
 
+variable "ENV" {
+  description = "Environment var."
+  type        = string
+  default     = "dev"
+}
+
+variable "DOMAIN" {
+  description = "Root or subdomain."
+  type        = string
+}
+
+variable "SITE" {
+  description = "Site name of the project/app."
+  type        = string
+}
+variable "ID" {
+  description = "Id of the release, usually an int."
+  type        = number
+}
 
 
 # WEB
@@ -88,16 +107,16 @@ variable "linode_web_instance_image" {
 
 variable "linode_web_instance_node_count" {}
 
-variable "linode_web_instance_swap_size" {
-  #TODO: should be defined by the instance size using the var linode_type..
-  description = "Swap size in MB."
-  type        = number
-  default     = 1024
-}
+# variable "linode_web_instance_swap_size" {
+#   #TODO: should be defined by the instance size using the var linode_type..
+#   description = "Swap size in MB."
+#   type        = number
+#   default     = 1024
+# }
 
 variable "linode_web_instance_tags" {
   type    = list(string)
-  default = ["example"]
+  default = ["dev", "web"]
 }
 
 variable "linode_web_instance_type" {
@@ -184,18 +203,20 @@ variable "linode_db_instance_image" {
   # default = "linode/ubuntu21.04" # 36 - linode/ubuntu21.04
 }
 
-variable "linode_db_instance_node_count" {}
-
-variable "linode_db_instance_swap_size" {
-  #TODO: should be defined by the instance size using the var linode_type..
-  description = "Swap size in MB."
-  type        = number
-  default     = 1024
+variable "linode_db_instance_node_count" {
+  type = number
 }
+
+# variable "linode_db_instance_swap_size" {
+#   #TODO: should be defined by the instance size using the var linode_type..
+#   description = "Swap size in MB."
+#   type        = number
+#   default     = 1024
+# }
 
 variable "linode_db_instance_tags" {
   type    = list(string)
-  default = ["example"]
+  default = ["dev", "database"]
 }
 
 variable "linode_db_instance_type" {
