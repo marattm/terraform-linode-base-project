@@ -101,9 +101,12 @@ terraform-linode-infra
     
     ```
 
-- `terraform init -backend-config=backends.example.tfvars`
+- Initialize terraform dependencies
 
-- `make terraform-plan`
+  - to use a ***remote*** backend ***(preferred for prod / staging / dev env)*** run this: `terraform init -backend-config=backends.example.tfvars`
+  - to use a ***local*** backend ***(preferred for sandbox env)*** run this: `make terraform-init`
+
+- `make terraform-plan` and apply changes
 
 ## Building infrastructure - Tier example settings
 
