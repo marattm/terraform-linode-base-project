@@ -1,0 +1,17 @@
+- [x] remove the swap variable
+- [x] reduce as much as possible the number of variables you need to parametrize
+- [x] update readme in module
+- [x] update readme in base project
+- [x] dev
+- [x] staging
+- [x] prod
+- [x] define tier listing
+- [ ] update the variables for the node balancer module, and clean it up (at least for the label and the tags)
+- [ ] update the variables for the network module, and clean it up (at least for the label and the tags)
+- [ ] remove the user_data / remote exec scripts from dev/staging/prod | or let it in another branch for demo / example folder..
+- [ ] use versioning for your modules
+- [ ] define the branching policy if any needed
+- [ ] explore how to test in terraform for 
+- [ ] explore the other type of structure for managing multiple states/env
+  - [ ] 1 folder per env --> `main` branch
+  - [ ] 1 main repo, many env folders with backends.tf / *.tfvars folder  --> `1-repo-multi-env-vars` branch
