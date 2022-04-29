@@ -17,3 +17,5 @@
   - [ ] 1 folder per env --> `main` branch
   - [ ] 1 main repo, many env folders with backends.tf / *.tfvars folder  --> `1-repo-multi-env-vars` branch
 - [ ] update modules' readme with the possibles variables
+- [ ] find a way to manage the 3 dev / staqing / prod env when developing one env without drifting..
+- [ ] 
