@@ -3,7 +3,7 @@
 terraform {
   backend "s3" {
     bucket = "tf-state-67ehr"
-    key    = "terraform-linode-base-project/development/terraform.tfstate"
+    key    = "terraform-linode-base-project/staging/terraform.tfstate"
     region = "us-east-2"
 
     # endpoint                    = "ap-south-1.linodeobjects.com" # e.g. us-est-1.linodeobjects.com

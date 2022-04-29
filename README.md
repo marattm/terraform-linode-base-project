@@ -4,7 +4,7 @@ terraform-linode-infra
 
 - [terraform-linode-base-project](#terraform-linode-base-project)
   - [Getting started](#getting-started)
-  - [Base project and modules development](#base-project-and-modules-development)
+  - [Base project and modules dev](#base-project-and-modules-dev)
   - [Building tier infrastructure](#building-tier-infrastructure)
     - [Tier 1 - 1 LB / 2-4 WEB / 1 DB](#tier-1---1-lb--2-4-web--1-db)
     - [Tier 2 - 1 LB / 1   WEB / 1 DB](#tier-2---1-lb--1---web--1-db)
@@ -22,7 +22,7 @@ terraform-linode-infra
     AWS_SECRET_KEY            = ""
     AWS_REGION                = ""
     AWS_S3_BACKEND_BUCKET     = "tfstate_bucket"
-    AWS_S3_BACKEND_BUCKET_KEY = "terraform-linode-base-project/development/terraform.tfstate"
+    AWS_S3_BACKEND_BUCKET_KEY = "terraform-linode-base-project/dev/terraform.tfstate"
 
     authorized_keys = ["~/.ssh/id_ed25519.pub"]
     public_key_path = "~/.ssh/id_ed25519.pub"
@@ -50,9 +50,9 @@ terraform-linode-infra
 
     ```console
     terraform-linode-base-project
-    ├── development
+    ├── dev
     ├── staging
-    ├── production
+    ├── prod
     ├── modules
     └── scripts
     ```
@@ -63,7 +63,7 @@ terraform-linode-infra
 
 ## Base project and modules development
 
-- To make the development of the base project and the modules easier run this command `./scripts/modules_symlinks.sh` this will update the  `~/workspace/terraform-linode-base-project` like below:
+- To make the dev of the base project and the modules easier run this command `./scripts/modules_symlinks.sh` this will update the  `~/workspace/terraform-linode-base-project` like below:
 
     ```console
     terraform-linode-module-dbserver         # .git
@@ -71,9 +71,9 @@ terraform-linode-infra
     terraform-linode-module-nodebalancer     # .git
     terraform-linode-module-webserver        # .git
     terraform-linode-base-project            # .git
-    ├── development
+    ├── dev
     ├── staging
-    ├── production
+    ├── prod
     ├── modules
     │   ├── terraform-linode-module-dbserver -> ../terraform-linode-module-dbserver
     │   ├── terraform-linode-module-network -> ../terraform-linode-module-network
@@ -82,7 +82,7 @@ terraform-linode-infra
     └── scripts
     ```
 
-- Then update the `development/maint.tf` modules sources:
+- Then update the `dev/maint.tf` modules sources:
 
     ```hcl
     module "webserver" {
