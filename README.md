@@ -4,7 +4,7 @@ terraform-linode-infra
 
 - [terraform-linode-base-project](#terraform-linode-base-project)
   - [Getting started](#getting-started)
-  - [Base project and modules dev](#base-project-and-modules-dev)
+  - [Base project and modules development](#base-project-and-modules-development)
   - [Building tier infrastructure](#building-tier-infrastructure)
     - [Tier 1 - 1 LB / 2-4 WEB / 1 DB](#tier-1---1-lb--2-4-web--1-db)
     - [Tier 2 - 1 LB / 1   WEB / 1 DB](#tier-2---1-lb--1---web--1-db)
@@ -28,16 +28,14 @@ terraform-linode-infra
     public_key_path = "~/.ssh/id_ed25519.pub"
     root_password   = "terrapass"
 
-
+    linode_web_instance_type        = "g6-nanode-1"
+    linode_web_instance_node_count  = 2
     # linode_web_instance_label = 
-    linode_web_instance_type       = "g6-nanode-1"
-    linode_web_instance_node_count = 2
-    # linode_web_instance_swap_size = 
     # linode_web_instance_tags = 
 
+    linode_db_instance_type         = "g6-nanode-1"
+    linode_db_instance_node_count   = 1
     # linode_db_instance_label = 
-    linode_db_instance_type = "g6-nanode-1"
-    # linode_db_instance_node_count = 1
     # linode_db_instance_tags = 
 
     SITE = "example"
@@ -118,12 +116,12 @@ terraform-linode-infra
 - `secret.tfvars`:
 
     ```tfvars
-    linode_web_instance_type       = "g6-nanode-1"
-    linode_web_instance_node_count = 2
-    linode_db_instance_type = "g6-nanode-1"
-    linode_db_instance_node_count = 1
-    SITE = "example"
-    ID   = "1"
+    linode_web_instance_type        = "g6-nanode-1"
+    linode_web_instance_node_count  = 2
+    linode_db_instance_type         = "g6-nanode-1"
+    linode_db_instance_node_count   = 1
+    SITE                            = "example"
+    ID                              = "1"
     ```
 
 ### Tier 2 - 1 LB / 1   WEB / 1 DB
@@ -131,12 +129,12 @@ terraform-linode-infra
 - `secret.tfvars`:
 
     ```tfvars
-    linode_web_instance_type       = "g6-nanode-1"
-    linode_web_instance_node_count = 1
-    linode_db_instance_type = "g6-nanode-1"
-    linode_db_instance_node_count = 1
-    SITE = "example"
-    ID   = "1"
+    linode_web_instance_type        = "g6-nanode-1"
+    linode_web_instance_node_count  = 1
+    linode_db_instance_type         = "g6-nanode-1"
+    linode_db_instance_node_count   = 1
+    SITE                            = "example"
+    ID                              = "1"
     ```
 
 ### Tier 3 - 1 LB / 1   WEB/DB
@@ -144,10 +142,10 @@ terraform-linode-infra
 - `secret.tfvars`:
 
     ```tfvars
-    linode_web_instance_type       = "g6-nanode-1"
-    linode_web_instance_node_count = 1
-    linode_db_instance_type = "g6-nanode-1"
-    linode_db_instance_node_count = 0
-    SITE = "example"
-    ID   = "1"
+    linode_web_instance_type        = "g6-nanode-1"
+    linode_web_instance_node_count  = 1
+    linode_db_instance_type         = "g6-nanode-1"
+    linode_db_instance_node_count   = 0
+    SITE                            = "example"
+    ID                              = "1"
     ```
