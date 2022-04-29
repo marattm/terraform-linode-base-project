@@ -1,4 +1,4 @@
-# example file for settings up the sensitive backend parameters
+# example file for sensitive backend settings
 
 bucket  = ""
 key     = ""

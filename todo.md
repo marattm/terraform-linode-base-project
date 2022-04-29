@@ -42,3 +42,6 @@
   - [ ] find a way to manage the 3 dev / staqing / prod env when developing one env without drifting..
   - [ ] the idea of making this whole project like a module???
   - [ ] all other modules linode can offer and see if some are relevant to integrate
+
+- REFACTOR
+  - [x] explain the new structure to work with the project

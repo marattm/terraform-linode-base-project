@@ -12,18 +12,7 @@ terraform-linode-infra
 
 ## Getting started
 
-- Change directory to the right environment
-
-    ```console
-    terraform-linode-base-project
-    ├── dev
-    ├── staging
-    ├── prod
-    ├── modules
-    └── scripts
-    ```
-
-- Create a `secrets.tfvars` file and update the vars. All possible variables are located in the `varaibles.tf` file.
+- Copy/Paste that file `tf-envs/example/secrets.example..tfvars` into a new `tf-envs/new-env/secrets.tfvars` file and update the vars. All possible variables are located in the `varaibles.tf` file.
 
     ```tfvars
     LN_API_TOKEN    = ""
@@ -47,34 +36,58 @@ terraform-linode-infra
     DOMAIN  = "dev.example.com"     # example-web1.dev.example.com
     ```
 
-- The values in the `terraform.tfvars` should be fine, as they are general, but can be overridden using a `override.tfvars` file.
-
 - Copy/Paste the `backends.example.tfvars` file into a new one, and fill in the parameters.
 
-- Initialize terraform dependencies and backend: `terraform init -backend-config=backends.example.tfvars`
+- The values in the `terraform.tfvars` should be fine, as they are general, but can be overridden using a `override.tfvars` file.
 
-- `make terraform-plan` and apply changes
+- Initialize terraform dependencies and backend: `make dev-init`
+
+- Plan and apply changes: `make dev-plan` and apply changes
+
+- List of the main `make` commands per env in the `Makefile`:
+
+| *Cmd/Env*             | **sandbox**          | **dev**          | **staging**          | **prod**          |
+| --------------------- | -------------------- | ---------------- | -------------------- | ----------------- |
+| **terraform init**    | make sandbox-init    | make dev-init    | make staging-init    | make prod-init    |
+| **terraform plan**    | make sandbox-plan    | make dev-plan    | make staging-plan    | make prod-plan    |
+| **terraform apply**   | make sandbox-apply   | make dev-apply   | make staging-apply   | make prod-apply   |
+| **terraform refresh** | make sandbox-refresh | make dev-refresh | make staging-refresh | make prod-refresh |
+| **terraform destroy** | make sandbox-destroy | make dev-destroy | make staging-destroy | make prod-destroy |
 
 ## Base project and modules development
 
 - To make the dev of the base project and the modules easier run this command `./scripts/modules_symlinks.sh` this will update the  `~/workspace/terraform-linode-base-project` like below:
 
     ```console
-    terraform-linode-module-dbserver         # .git
-    terraform-linode-module-network          # .git
-    terraform-linode-module-nodebalancer     # .git
-    terraform-linode-module-webserver        # .git
-    terraform-linode-base-project            # .git
-    ├── dev
-    ├── staging
-    ├── prod
+    ../terraform-linode-module-dbserver         # .git
+    ../terraform-linode-module-network          # .git
+    ../terraform-linode-module-nodebalancer     # .git
+    ../terraform-linode-module-webserver        # .git
+    ../terraform-linode-base-project            # .git
     ├── modules
-    │   ├── terraform-linode-module-dbserver -> ../terraform-linode-module-dbserver
-    │   ├── terraform-linode-module-network -> ../terraform-linode-module-network
-    │   ├── terraform-linode-module-nodebalancer -> ../terraform-linode-module-nodebalancer
-    │   └── terraform-linode-module-webserver -> ../terraform-linode-module-webserver
-    └── scripts
+    │   ├── terraform-linode-module-dbserver -> ../terraform-linode-module-dbserver
+    │   ├── terraform-linode-module-network -> ../terraform-linode-module-network
+    │   ├── terraform-linode-module-nodebalancer -> ../terraform-linode-module-nodebalancer
+    │   └── terraform-linode-module-webserver -> ../terraform-linode-module-webserver
+    ├── scripts
+    └── tf-envs                         # all the differente envs
+        ├── dev                         
+            ├── backends.tfvars
+            └── secrets.tfvars
+        ├── prod
+            ├── backends.tfvars
+            └── secrets.tfvars
+        ├── sandbox
+            ├── backends.tfvars
+            └── secrets.tfvars
+        └── staging
+            ├── backends.tfvars
+            └── secrets.tfvars
     ```
+
+    NB:
+      - The `module` dir is only to help for the development part of those modules.
+      - The `tf-envs` dir contains the secrets variables separated by env. Those are not versioned.
 
 - Then update the `dev/maint.tf` modules sources:
 
