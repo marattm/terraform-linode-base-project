@@ -6,6 +6,7 @@ DATE=$(shell date +%y-%m-%d-%H%M%S)
 # TERRAFORM
 
 terraform-init:
+	@printf "\n%s\n%s\n%s\n\n" "/!\ Will use a local backends /!\ " "If you want to initialize with a remote backend run this:" "terraform init -backend-config=backends.example.tfvars"
 	terraform init
 
 terraform-fmt:

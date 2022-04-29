@@ -101,7 +101,7 @@ terraform-linode-infra
     
     ```
 
-- `make terraform-init`
+- `terraform init -backend-config=backends.example.tfvars`
 
 - `make terraform-plan`
 
