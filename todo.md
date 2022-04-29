@@ -7,9 +7,9 @@
 - [x] prod
 - [x] define tier listing
 - [x] update the variables for the node balancer module, and clean it up (at least for the label and the tags)
-- [ ] update the variables for the network module, and clean it up (at least for the label and the tags)
+- [x] update the variables for the network module, and clean it up (at least for the label and the tags)
+- [x] remove the user_data / remote exec scripts from dev/staging/prod | or let it in another branch for demo / example folder..
 - [ ] add the LN LB SSL cert and SSL key for the nodebalancer
-- [ ] remove the user_data / remote exec scripts from dev/staging/prod | or let it in another branch for demo / example folder..
 - [ ] use versioning for your modules
 - [ ] define the branching policy if any needed
 - [ ] explore how to test in terraform for 
@@ -17,4 +17,3 @@
   - [ ] 1 folder per env --> `main` branch
   - [ ] 1 main repo, many env folders with backends.tf / *.tfvars folder  --> `1-repo-multi-env-vars` branch
 - [ ] update modules' readme with the possibles variables
-- [ ] 
