@@ -250,3 +250,22 @@ variable "linode_db_instance_type" {
   # default = "g1-gpu-rtx6000-3" # 27 - g1-gpu-rtx6000-3
   # default = "g1-gpu-rtx6000-4" # 28 - g1-gpu-rtx6000-4
 }
+
+# NODE BALANCER
+
+variable "linode_nodebalancer_stickiness" {
+  type    = string
+  default = "http_cookie"
+}
+
+variable "linode_nodebalancer_algorithm" {
+  type    = string
+  default = "leastconn"
+  #   default = "roundrobin"
+  #   default = "source"
+}
+
+variable "linode_nodebalancer_tags" {
+  type    = list(string)
+  default = ["dev", "loadblanacer"]
+}
