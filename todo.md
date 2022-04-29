@@ -14,8 +14,11 @@
   - [x] remove the user_data / remote exec scripts from dev/staging/prod | or let it in another branch for demo / example folder..
 
 - MODULE
-  - [ ] add the LN LB SSL cert and SSL key for the nodebalancer
-  - [ ] server backup configuration
+  - [ ] nodebalancer
+    - [ ] add the LN LB SSL cert and SSL key for the nodebalancer
+  - [ ] instance configuration
+    - [ ] alerts
+    - [ ] backup enabled
   - [ ] dns
 
 - README
@@ -27,7 +30,7 @@
 
 - EXPLORE
   - [x] see what's the matter with the backend remote on s3 for the PROD ENV
-  - [ ] how to test in terraform for 
+  - [ ] how to test in terraform for
   - [ ] see how to push the a downstream repo at imagescape
   - [ ] the other type of structure for managing multiple states/env
     - [ ] 1 folder per env --> `main` branch
