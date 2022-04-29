@@ -21,6 +21,10 @@
     - [ ] backup enabled
   - [ ] dns
 
+- WORKFLOW
+  - [ ] use versioning for your modules
+  - [ ] define the branching policy if any needed
+
 - README
   - [ ] use versioning for your modules
   - [ ] define the branching policy if any needed
