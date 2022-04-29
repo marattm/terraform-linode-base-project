@@ -5,44 +5,12 @@ terraform-linode-infra
 - [terraform-linode-base-project](#terraform-linode-base-project)
   - [Getting started](#getting-started)
   - [Base project and modules development](#base-project-and-modules-development)
-  - [Building tier infrastructure](#building-tier-infrastructure)
+  - [Building infrastructure - Tier example settings](#building-infrastructure---tier-example-settings)
     - [Tier 1 - 1 LB / 2-4 WEB / 1 DB](#tier-1---1-lb--2-4-web--1-db)
     - [Tier 2 - 1 LB / 1   WEB / 1 DB](#tier-2---1-lb--1---web--1-db)
     - [Tier 3 - 1 LB / 1   WEB/DB](#tier-3---1-lb--1---webdb)
 
 ## Getting started
-
-- Create a `secret.tfvars` file and update the vars.
-
-    ```tfvars
-    LN_API_TOKEN = ""
-    LN_REGION    = ""
-
-    AWS_ACCESS_KEY            = ""
-    AWS_SECRET_KEY            = ""
-    AWS_REGION                = ""
-    AWS_S3_BACKEND_BUCKET     = "tfstate_bucket"
-    AWS_S3_BACKEND_BUCKET_KEY = "terraform-linode-base-project/dev/terraform.tfstate"
-
-    authorized_keys = ["~/.ssh/id_ed25519.pub"]
-    public_key_path = "~/.ssh/id_ed25519.pub"
-    root_password   = "terrapass"
-
-    linode_web_instance_type        = "g6-nanode-1"
-    linode_web_instance_node_count  = 2
-    # linode_web_instance_label = 
-    # linode_web_instance_tags = 
-
-    linode_db_instance_type         = "g6-nanode-1"
-    linode_db_instance_node_count   = 1
-    # linode_db_instance_label = 
-    # linode_db_instance_tags = 
-
-    SITE = "example"
-    ID   = "1"
-    ```
-
-- The values in the `terraform.tfvars` should be fine, as they are general, but can be overridden using a `override.tfvars` file.
 
 - Change directory to the right environment
 
@@ -55,9 +23,37 @@ terraform-linode-infra
     └── scripts
     ```
 
-- `make terraform-init`
+- Create a `secrets.tfvars` file and update the vars. All possible variables are located in the `varaibles.tf` file.
 
-- `make terraform-plan`
+    ```tfvars
+    LN_API_TOKEN    = ""
+    LN_REGION       = ""
+
+    AWS_ACCESS_KEY  = ""
+    AWS_SECRET_KEY  = ""
+    AWS_REGION      = ""
+
+    authorized_keys = ["~/.ssh/id_ed25519.pub"]
+    public_key_path = "~/.ssh/id_ed25519.pub"
+
+    linode_web_instance_type        = "g6-nanode-1"
+    linode_web_instance_node_count  = 2
+
+    linode_db_instance_type         = "g6-nanode-1"
+    linode_db_instance_node_count   = 1
+
+    SITE    = "example"             # would label servers:
+    ID      = "1"                   # example-db1.dev.example.com
+    DOMAIN  = "dev.example.com"     # example-web1.dev.example.com
+    ```
+
+- The values in the `terraform.tfvars` should be fine, as they are general, but can be overridden using a `override.tfvars` file.
+
+- Copy/Paste the `backends.example.tfvars` file into a new one, and fill in the parameters.
+
+- Initialize terraform dependencies and backend: `terraform init -backend-config=backends.example.tfvars`
+
+- `make terraform-plan` and apply changes
 
 ## Base project and modules development
 
@@ -109,7 +105,7 @@ terraform-linode-infra
 
 - `make terraform-plan`
 
-## Building tier infrastructure
+## Building infrastructure - Tier example settings
 
 ### Tier 1 - 1 LB / 2-4 WEB / 1 DB
 
