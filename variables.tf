@@ -54,6 +54,11 @@ variable "ID" {
 
 
 # WEB
+variable "linode_web_instance_backups_enabled" {
+  type    = bool
+  default = false
+}
+
 variable "linode_web_instance_group" {
   type    = string
   default = "webservers"
@@ -150,7 +155,10 @@ variable "linode_web_instance_type" {
 }
 
 # DB
-
+variable "linode_db_instance_backups_enabled" {
+  type    = bool
+  default = false
+}
 
 variable "linode_db_instance_group" {
   type    = string
