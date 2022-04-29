@@ -1,8 +1,7 @@
 # module invocations
 module "nodebalancer" {
-  source = "../modules/terraform-linode-module-nodebalancer"
-  # source = "git@github.com:marattm/terraform-linode-module-nodebalancer.git"
-  # label                   = "${var.SITE}-db${var.ID}.${var.DOMAIN}"
+  # source = "../modules/terraform-linode-module-nodebalancer"
+  source                  = "git@github.com:marattm/terraform-linode-module-nodebalancer.git"
   region                  = var.LN_REGION
   node_count              = var.linode_web_instance_node_count
   web_servers_private_ips = module.webserver.web_servers_private_ips
@@ -51,4 +50,6 @@ module "network" {
   linode_ids              = module.webserver.web_linode_ids
   db_linode_ids           = module.dbserver.db_linode_ids
   web_servers_private_ips = module.webserver.web_servers_private_ips
+  SITE                    = var.SITE
+  ENV                     = var.ENV
 }
