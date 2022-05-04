@@ -6,13 +6,47 @@ terraform-linode-infra
   - [Getting started](#getting-started)
   - [Base project and modules development](#base-project-and-modules-development)
   - [Building infrastructure - Tier example settings](#building-infrastructure---tier-example-settings)
-    - [Tier 1 - 1 LB / 2-4 WEB / 1 DB](#tier-1---1-lb--2-4-web--1-db)
-    - [Tier 2 - 1 LB / 1   WEB / 1 DB](#tier-2---1-lb--1---web--1-db)
-    - [Tier 3 - 1 LB / 1   WEB/DB](#tier-3---1-lb--1---webdb)
+    - [Tier 1 - 1 LB / 2+ WEB / 1 DB](#tier-1---1-lb--2-web--1-db)
+    - [Tier 2 - 1 LB / 1  WEB / 1 DB](#tier-2---1-lb--1--web--1-db)
+    - [Tier 3 - 1 LB / 1  WEB/DB](#tier-3---1-lb--1--webdb)
 
 ## Getting started
 
-- Copy/Paste that file `tf-envs/example/secrets.example..tfvars` into a new `tf-envs/new-env/secrets.tfvars` file and update the vars. All possible variables are located in the `varaibles.tf` file.
+- Project structure
+
+    ```console
+    terraform-linode-base-project            # .git
+    ├── Makefile
+    ├── backends.tf
+    ├── main.tf
+    ├── modules/
+    ├── outputs.tf
+    ├── providers.tf
+    ├── scripts/
+    ├── setup_script.sh
+    ├── terraform-plan-output/
+    ├── terraform.tfvars
+    ├── tf-envs/
+        ├── dev                         
+            ├── backends.tfvars
+            └── secrets.tfvars
+        ├── prod
+            ├── backends.tfvars
+            └── secrets.tfvars
+        ├── sandbox
+            ├── backends.tfvars
+            └── secrets.tfvars
+        └── staging
+            ├── backends.tfvars
+            └── secrets.tfvars
+    └── variables.tf
+    ```
+
+    **NB:**
+    - The `tf-envs` dir contains the secrets variables separated by env. Those are not versioned.
+    - Those 2 files -- `backends.tfvars` & `secrets.tfvars` -- should be, in most cases, the only files to be configured to setup the terraform script for any client.
+
+- Copy/Paste that file `tf-envs/example/secrets.example.tfvars` into a new `tf-envs/new-env/secrets.tfvars` file and update the vars. All possible variables are located in the `varaibles.tf` file.
 
     ```tfvars
     LN_API_TOKEN    = ""
@@ -38,7 +72,7 @@ terraform-linode-infra
 
 - Copy/Paste the `backends.example.tfvars` file into a new one, and fill in the parameters.
 
-- The values in the `terraform.tfvars` should be fine, as they are general, but can be overridden using a `override.tfvars` file.
+- The values in the `terraform.tfvars` should be fine, as they are general, but can be overridden using a `override.tfvars` file if needed.
 
 - Initialize terraform dependencies and backend: `make dev-init`
 
@@ -56,7 +90,7 @@ terraform-linode-infra
 
 ## Base project and modules development
 
-- To make the dev of the base project and the modules easier run this command `./scripts/modules_symlinks.sh` this will update the  `~/workspace/terraform-linode-base-project` like below:
+- To make the development workflow of the base project and the modules easier, run this command `./scripts/modules_symlinks.sh` this will update the  `~/workspace/terraform-linode-base-project` folder structure like below:
 
     ```console
     ../terraform-linode-module-dbserver         # .git
@@ -72,20 +106,15 @@ terraform-linode-infra
     ├── scripts
     └── tf-envs
         ├── dev                         
-            ├── backends.tfvars
-            └── secrets.tfvars
         ├── prod
-            ├── backends.tfvars
-            └── secrets.tfvars
         ├── sandbox
-            ├── backends.tfvars
-            └── secrets.tfvars
         └── staging
-            ├── backends.tfvars
-            └── secrets.tfvars
     ```
 
-    NB: The `modules` dir is only to help for the development part of those modules. The `tf-envs` dir contains the secrets variables separated by env. Those are not versioned.
+    **NB:**
+    - The `modules` dir is only there to be the symlink target. It helps for the development part of those modules. 
+    - Every changes made in the local `modules` folders would be taken into account when running `terraform commands`
+    - Nothing is versioned from that `modules` folder from the point of view of the base project. However, they are versioned in their respective module `.git` repo.
 
 - Then update the `maint.tf` modules sources:
 
@@ -121,7 +150,7 @@ terraform-linode-infra
 
 ## Building infrastructure - Tier example settings
 
-### Tier 1 - 1 LB / 2-4 WEB / 1 DB
+### Tier 1 - 1 LB / 2+ WEB / 1 DB
 
 - `secret.tfvars`:
 
@@ -134,7 +163,7 @@ terraform-linode-infra
     ID                              = "1"
     ```
 
-### Tier 2 - 1 LB / 1   WEB / 1 DB
+### Tier 2 - 1 LB / 1  WEB / 1 DB
 
 - `secret.tfvars`:
 
@@ -147,7 +176,7 @@ terraform-linode-infra
     ID                              = "1"
     ```
 
-### Tier 3 - 1 LB / 1   WEB/DB
+### Tier 3 - 1 LB / 1  WEB/DB
 
 - `secret.tfvars`:
 
