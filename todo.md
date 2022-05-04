@@ -16,6 +16,9 @@
 - MODULE
   - [ ] nodebalancer
     - [ ] add the LN LB SSL cert and SSL key for the nodebalancer
+    - [ ] TCP or http/https
+      - [ ] tcp no ssl required
+      - [ ] https ssl required
   - [ ] instance configuration
     - [ ] alerts
     - [ ] backup enabled
@@ -45,3 +48,5 @@
 
 - REFACTOR
   - [x] explain the new structure to work with the project
+  - [ ] move the setup_script.sh to scripts/ and update the modules path that uses it
+  - [ ] tier without LB also
